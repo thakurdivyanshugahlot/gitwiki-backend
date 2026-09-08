@@ -1,0 +1,31 @@
+{
+  "name": "gitwiki",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "inngest:dev": "npx --yes inngest-cli@latest dev --no-discovery -u http://localhost:8000/api/inngest",
+    "postinstall": "prisma skills sync || exit 0"
+  },
+  "dependencies": {
+    "@clerk/express": "^2.1.66",
+    "@langchain/core": "^1.2.9",
+    "@langchain/openai": "^1.5.11",
+    "@langchain/textsplitters": "^1.0.1",
+    "@octokit/rest": "^22.0.1",
+    "@pinecone-database/pinecone": "^8.2.0",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "inngest": "^4.19.0",
+    "pg": "^8.23.0",
+    "prisma": "^7.10.0"
+  }
+}
