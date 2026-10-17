@@ -19,6 +19,11 @@ export async function createJob(id, data = {}) {
 
 export async function updateJob(id, patch) {
   try {
+    if (patch.status === "pending") {
+      const current = await prisma.job.findUnique({ where: { id }, select: { status: true } });
+      if (current && current.status !== "pending") return current;
+    }
+
     return await prisma.job.update({
       where: { id },
       data: {
@@ -30,7 +35,7 @@ export async function updateJob(id, patch) {
       },
     });
   } catch (err) {
-    if (err.code === "P2025") return null; // job doesn't exist (e.g. stale restart)
+    if (err.code === "P2025") return null;
     throw err;
   }
 }
